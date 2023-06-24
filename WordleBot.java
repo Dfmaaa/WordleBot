@@ -121,8 +121,8 @@ public class WordleBot {
             outerLoop:
             for (int l = 0; l < candidate_array.length; l++) {
                 System.out.println("Is '" + candidate_array[l] + "' present(P), correct(C), not present(N)");
-                char choice = input.nextLine().charAt(0);
-                switch (choice) {
+                String choice = input.next().toUpperCase();
+                switch (choice.charAt(0)) {
                     case 'P':
                         present.add(candidate_array[l]);
                         break;

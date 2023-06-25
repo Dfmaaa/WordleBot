@@ -82,37 +82,38 @@ public class WordleBot {
         }
 
         System.out.println("Starting. Possible words: " + possible_words.size());
+        MainLoop:
         for (int i = 0; i < possible_words.size(); i++) {
             String candidate = possible_words.get(i);
-            int flag = 0;
             for (int j = 0; j < banned.size(); j++) {
                 if (candidate.indexOf(banned.get(j)) != -1) {
                     possible_words.remove(i); // removing the word
-                    flag = 1;
-                    break;
+                    i--;
+                    continue MainLoop;
                 }
             }
 
-            for (int j = 0; j < present.size(); j++) {
-                if (candidate.indexOf(present.get(j)) == -1) {
+            for(int j = 0; j < present.size(); j++){
+                if(candidate.indexOf(present.get(j)) == -1){
                     possible_words.remove(i); // removing the word
-                    flag = 1;
-                    break;
+                    i--;
+                    continue MainLoop;
                 }
             }
-
-            // if any present characters are not present, remove the word, and run the loop from the same index again.
-            if (flag == 1) {
-                i--;
-                continue;
-            }
-
-            if (condition_meet(candidate, complete_word) == -1) {
+            
+            if(condition_meet(candidate, complete_word) == -1){
                 possible_words.remove(i);
                 i--;
-                continue;
+                continue MainLoop;
             }
 
+            if(condition_meet(candidate, complete_word) == -1){
+                possible_words.remove(i);
+                i--;
+                continue MainLoop;
+            }
+
+            System.out.println("Possible words: " + possible_words.size() + " words.");
             // We just removed the impossible words by using the hints given to us (banned, present, fixed).
             System.out.println("TRY: " + candidate); // The candidate variable now satisfies all conditions.
             char[] candidate_array = candidate.toCharArray();

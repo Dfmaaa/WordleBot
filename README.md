@@ -17,4 +17,4 @@ The current algorithm utilizes three hints:
 Observant people will notice there's one more hint we can use. It is an extension of hint 2. It is:
 
 Remove all words from the possible_words list that have Character i in the incorrect position. Enforcing this rule will result in an even 
-smaller set of possibilities. I'll probably implement it.
+smaller set of possibilities. In order to implement it, we're going to need a HashMap. That's the simplest way. The two fields in the hashmap will be a character,and an integer(the position). We will make use of this HashMap in the P option. Whenever P is entered, an entry will be added to the HashMap, with the position as key, and the character as value. And then our problem is converted to a simple check.

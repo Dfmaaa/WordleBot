@@ -6,7 +6,7 @@ A bot that plays wordle for you.
 It uses a dictionary of words provided by the user. It makes use of the hints given by wordle(Correct,Present,Wrong) to narrow the possibilities
 down to a smaller set of words.
 
-## Ideas that can make the algorithm more accurate
+## Ideas that can make the algorithm more accurate(IMPLEMENTED)
 
 The current algorithm utilizes three hints:
 

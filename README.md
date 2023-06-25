@@ -18,3 +18,9 @@ Observant people will notice there's one more hint we can use. It is an extensio
 
 Remove all words from the possible_words list that have Character i in the incorrect position. Enforcing this rule will result in an even 
 smaller set of possibilities. In order to implement it, we're going to need a HashMap. That's the simplest way. The two fields in the hashmap will be a character,and an integer(the position). We will make use of this HashMap in the P option. Whenever P is entered, an entry will be added to the HashMap, with the position as key, and the character as value. And then our problem is converted to a simple check.
+
+I implemented it. I actually managed to find some bugs in WordleBot too. The bug i discovered was:
+
+The checks were happening correctly. There was nothing wrong with the logic of the checks itself. The mistake was putting the exit statement at the end of the checks. Since I didn't use anything like `else if`, the checks kept happening, one by one, and they kept removing the words. The words were being removed without even being looked at, because I used the variable candidate to store the candidate string.
+
+How did I notice this? I wanted to compare the two versions, so I added a statement that prints the size of possible_words, and when I saw that `ImprovedWordleBot` reduced the number of possibilities to `6591`, and `WordleBot` reduced it to `6419`. I started looking for bugs in `ImprovedWordleBot` because I was sure that 'WordleBot` was correct. Then I switched over to `WordleBot` and noticed that there was nothing preventing the other checks from executing. 
